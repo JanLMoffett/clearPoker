@@ -1,18 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package javapoker;
 
 import java.util.Comparator;
 
 /**
- *
- * @author Jan
+ * A comparator built for poker players.
+ * @author Jan L. Moffett
  */
 public class PlayerComparator implements Comparator<TexasHoldemPlayer>{
     
+    /**
+     * Compares two players in a Texas Holdem poker game.
+     * @param p1    the first player.
+     * @param p2    the second player.
+     * @return  1 if the first player has a better hand than the second player, -1 if the first player has a worse hand than the second player, and 0 if there is a tie. 
+     */
     @Override
     public int compare(TexasHoldemPlayer p1, TexasHoldemPlayer p2){
     
