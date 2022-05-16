@@ -1,18 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package javapoker;
 
 import java.util.ArrayList;
 /**
- *
- * @author Jan
+ * A class that classifies poker hands according to type. 
+ * @author Jan L. Moffett
  */
 public class HandFinder {
     
-    //this method finds the best grouping of ranks out of a hand
+    /**
+     * Returns the largest group of cards with equal ranks in a hand, or the card with the or group of cards with the most value rank in case of a tie.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of cards. 
+     */
     public static ArrayList<Card> getBestGroup(CardHand hand){
         
         hand.sortHand();
@@ -51,9 +51,13 @@ public class HandFinder {
         
         return group;
         
-    }//close getBestGroup
+    }
     
-    //this method finds the best grouping of ranks out of a hand
+    /**
+     * Returns the cards with the longest run of consecutive ranks in a hand, or the group with more valuable ranks in case of a tie.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of cards. 
+     */
     public static ArrayList<Card> getBestRun(CardHand hand){
         
         hand.sortHand();
@@ -90,9 +94,13 @@ public class HandFinder {
         
         return group;
         
-    }//close getBestRun
+    }
     
-    //determines if a hand of 5-7 cards contains at least 5 of the same suit
+    /**
+     * Tests the hand for a Flush - at least 5 cards of the same suit.
+     * @param hand  a hand of cards in a Texas Holdem poker game.
+     * @return  true if the hand contains a flush, false otherwise. 
+     */
     public static boolean hasFlush(CardHand hand){
         
         //assert that hand has at least 5 cards
@@ -136,9 +144,13 @@ public class HandFinder {
         
         return false;
         
-    }//close hasFlush
+    }
     
-    //returns five cards of the same suit from 7 card hand
+    /**
+     * Returns the cards that constitute the flush, if a hand contains one.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of five or more cards, or null if the hand has no flush. 
+     */
     public static ArrayList<Card> getFlush(CardHand hand){
         
         hand.sortHand();
@@ -224,8 +236,13 @@ public class HandFinder {
         
         return null;
         
-    }//close getFlush
+    }
     
+    /**
+     * Tests a hand for a Four of a Kind - four cards with the same rank.
+     * @param hand  a hand of cards.
+     * @return  true if the hand contains a Four of a Kind, false otherwise. 
+     */
     public static boolean hasFourOfAKind(CardHand hand){
     
         ArrayList<Card> group1 = getBestGroup(hand);
@@ -233,6 +250,11 @@ public class HandFinder {
     
     }
     
+    /**
+     * Returns the cards that constitute the Four of a Kind.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of four cards, or null if the hand has no Four of a Kind. 
+     */
     public static ArrayList<Card> getFourOfAKind(CardHand hand){
     
         ArrayList<Card> group1 = getBestGroup(hand);
@@ -244,6 +266,11 @@ public class HandFinder {
     
     }
     
+    /**
+     * Tests a hand for a Three of a Kind - three cards with the same rank.
+     * @param hand  a hand of cards.
+     * @return  true if the hand had a Three of a Kind, false otherwise. 
+     */
     public static boolean hasThreeOfAKind(CardHand hand){
     
         ArrayList<Card> group1 = getBestGroup(hand);
@@ -251,6 +278,11 @@ public class HandFinder {
     
     }
     
+    /**
+     * Returns the cards than constitute the Three of a Kind.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of three cards, or null if the hand has no Three of a Kind. 
+     */
     public static ArrayList<Card> getThreeOfAKind(CardHand hand){
     
         ArrayList<Card> group1 = getBestGroup(hand);
@@ -261,6 +293,11 @@ public class HandFinder {
         }
     }
     
+    /**
+     * Tests the hand for a Full House - three cards of one rank and two cards of another.
+     * @param hand  a hand of cards.
+     * @return  true if the hand contains a Full House, false otherwise. 
+     */
     public static boolean hasFullHouse(CardHand hand){
         
         ArrayList<Card> h = new ArrayList<>();
@@ -280,6 +317,11 @@ public class HandFinder {
             
     }
     
+    /**
+     * Returns the cards that constitute the Full House.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of five cards, or null if the hand has no Full House.
+     */
     public static ArrayList<Card> getFullHouse(CardHand hand){
         
         ArrayList<Card> h = new ArrayList<>();
@@ -303,6 +345,11 @@ public class HandFinder {
             
     }
     
+    /**
+     * Tests the hand for a Straight - five or more cards with consecutive ranks.
+     * @param hand  a hand of cards.
+     * @return  true if the hand contains a Straight, false otherwise. 
+     */
     public static boolean hasStraight(CardHand hand){
         
         ArrayList<Card> run = getBestRun(hand);
@@ -311,7 +358,11 @@ public class HandFinder {
     
     }
     
-    /*Returns best 5-card run from a hand of 7 cards*/
+    /**
+     * Returns the cards that constitute the Straight.
+     * @param hand  a hand of cards.
+     * @return  an ArrayList of five cards, or null if the hand has no Straight.
+     */
     public static ArrayList<Card> getStraight(CardHand hand){
         
         //assert that hand input has at least 7 cards
@@ -336,8 +387,12 @@ public class HandFinder {
         }
     }
     
-    //this method should only be called after four of a kind, 
-    //three of a kind and full house are ruled out
+    /**
+     * Returns all the cards that constitute a Pair - two cards with the same rank.
+     * WARNING: This method should only be called after Four of a Kind, Three of a Kind, and Full House are ruled out.
+     * @param hand a hand of cards.
+     * @return  an ArrayList of cards, or null if the hand has no Pairs. 
+     */
     public static ArrayList<Card> getPairs(CardHand hand){
         
         ArrayList<Card> h = new ArrayList<>();
@@ -365,6 +420,11 @@ public class HandFinder {
     
     }
     
+    /**
+     * Tests the hand for Two Pair - two pair of cards with the same rank.
+     * @param hand  a hand of cards.
+     * @return  true if the hand has Two Pair,  false otherwise.
+     */
     public static boolean hasTwoPair(CardHand hand){
         
         ArrayList<Card> h = new ArrayList<>();
@@ -386,6 +446,11 @@ public class HandFinder {
     
     }
     
+    /**
+     * Tests the hand for a Pair - two cards with the same rank.
+     * @param hand  a hand of cards.
+     * @return  true if the hand contains a Pair, false otherwise. 
+     */
     public static boolean hasPair(CardHand hand){
         
         ArrayList<Card> group1 = getBestGroup(hand);

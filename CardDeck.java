@@ -1,18 +1,24 @@
-/*
-Once cards are removed, they can't be added back in to deck.  Must initialize new deck. 
 
- */
 package javapoker;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Comparator;
 
+/**
+ * A deck of 52 playing cards.
+ * <p>
+ * Once cards are removed, they can't be added back in to deck.  A new deck must be initialized to restore removed cards.
+ * @author Jan L. Moffett
+ */
 public class CardDeck {
-    
+     
     ArrayList<Card> deck;
     int size;
     
+    /**
+     * Sole constructor.
+     */
     CardDeck(){
         deck = new ArrayList<>();
         
@@ -35,6 +41,9 @@ public class CardDeck {
     
     }
     
+    /**
+     * Randomly orders the cards within the deck.
+     */
     public void shuffleDeck(){
     
         Random rand = new Random();
@@ -66,16 +75,26 @@ public class CardDeck {
         deck = newDeck;
     }
     
+    /**
+     * Sorts the deck in ascending order, from 2 of Clubs, to Ace of Spades.
+     */
     public void sortDeck(){
         Comparator<Card> cp = new CardComparator();
         deck.sort(cp);
     
     }
     
+    /**
+     * Prints the contents of the deck.
+     */
     public void printDeck(){
         deck.forEach(c -> System.out.println(c.toString()));
     }
     
+    /***
+     * Deals a card from the top of the deck.
+     * @return  the card in the first position of the deck. 
+     */
     public Card dealCard(){
         
         size--;
@@ -84,6 +103,10 @@ public class CardDeck {
         
     }
     
+    /**
+     * Returns the number of cards in the deck.
+     * @return  a number between 0 and 52, inclusive. 
+     */
     public int getSize(){
         return size;
     

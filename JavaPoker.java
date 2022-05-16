@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package javapoker;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 
+/**
+ * The class containing the main method of the javapoker package.
+ * @author Jan L. Moffett
+ */
 public class JavaPoker {
 
     
@@ -21,10 +15,12 @@ public class JavaPoker {
         
         runGame();
         
+    }
     
-        
-    }//close main
-    
+    /**
+     * Simulates the sequence of events in a Texas Holdem poker game.
+     * @return  A verbal description of the results of the game at each step. 
+     */
     public static ArrayList<String> simulateGame(){
         
         TexasHoldemGame g = new TexasHoldemGame();
@@ -35,6 +31,9 @@ public class JavaPoker {
         
     }
     
+    /**
+     * Runs the mechanics of a Texas Holdem poker game and prints the results.
+     */
     public static void runGame(){
         
         TexasHoldemGame g = new TexasHoldemGame();
@@ -96,12 +95,22 @@ public class JavaPoker {
         
     }
     
+    /**
+     * Generates a path to the image file representing the card.
+     * @param card  a playing card.
+     * @return  a file path i.e. "images/diamonds_02.jpg" 
+     */
     public static String cardToImage(Card card){
         return ("images/" + card.getSuit() + "_" + card.getRank() + ".jpg").toLowerCase();
         
     
     }
     
+    /**
+     * Deals seven cards from a randomly ordered deck.
+     * @param deck  a deck of cards.
+     * @return  an array of seven cards. 
+     */
     public static Card[] dealSeven(CardDeck deck){
         Card[] hand = new Card[7];
         
@@ -113,6 +122,12 @@ public class JavaPoker {
     
     }
     
+    /**
+     * Builds an array of cards out of an array of suits and an array of ranks.
+     * @param suits an array of card suits, must be the same length as ranks.
+     * @param ranks an array of card ranks, must be the same length as suits.
+     * @return  an array of cards. 
+     */
     public static Card[] buildHand(CardSuit[] suits, CardRank[] ranks){
         
         Card[] ret = new Card[suits.length];

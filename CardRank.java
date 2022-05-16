@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package javapoker;
 
 /**
- *
- * @author Jan
+ * A playing card rank; 2-10, Jack Queen, or King.
+ * @author Jan L. Moffett
  */
 public enum CardRank {
     TWO("2", 2),
@@ -27,16 +23,29 @@ public enum CardRank {
     private final String word;
     private final int value;
     
+    /**
+     * Sole constructor.
+     * @param w a word identifying the rank, i.e. "8" or "Queen."
+     * @param v a number identifying the rank, i.e. 8 or 12. 
+     */
     CardRank(String w, int v){
         word = w;
         value = v;
     
     }
     
+    /**
+     * Returns the rank in word form.
+     * @return  a word identifying the rank, i.e. "8" or "Queen.   
+     */
     public String word(){
         return word;
     }
     
+    /**
+     * Returns the rank in number form.
+     * @return  a number identifying the rank, i.e. 8 or 12. 
+     */
     public int value(){
         return value;
     }

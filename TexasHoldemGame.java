@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package javapoker;
+
 import java.util.ArrayList;
 import java.util.Comparator;
+
 /**
- *
- * @author Jan
+ * A game of Texas Holdem poker.
+ * @author Jan L. Moffett
  */
 public class TexasHoldemGame {
     
@@ -26,6 +24,9 @@ public class TexasHoldemGame {
     
     private ArrayList<TexasHoldemPlayer> players;
     
+    /**
+     * Sole constructor.
+     */
     public TexasHoldemGame(){
         
         deck = new CardDeck();
@@ -54,6 +55,9 @@ public class TexasHoldemGame {
         
     }
     
+    /**
+     * Prints each player's hand and the results of the game.
+     */
     public void printGame(){
     
         System.out.print("Player 1: ");
@@ -83,6 +87,11 @@ public class TexasHoldemGame {
     
     }
     
+    /**
+     * Returns a player.
+     * @param playerNum a number between 1 and 5.
+     * @return  the player identified by playerNum.
+     */
     public TexasHoldemPlayer getPlayer(int playerNum){
     
         switch(playerNum){
@@ -97,20 +106,34 @@ public class TexasHoldemGame {
         }
     }
     
+    /**
+     * Returns the Flop, the first public card dealt after the initial deal.
+     * @return  a card from the top of the deck. 
+     */
     public ArrayList<Card> getFlop(){
         return flop;
     
     }
     
+    /**
+     * Returns the Turn, the second public card dealt.
+     * @return  a card from the top of the deck.
+     */
     public Card getTurn(){
         return turn;
     }
     
+    /**
+     * Returns the River, the third and final public card dealt.
+     * @return  a card from the top of the deck. 
+     */
     public Card getRiver(){
         return river;
     }
     
-    
+    /**
+     * Evaluates each player's hand with public cards included.
+     */
     public void evaluatePlayers(){
         
         for(TexasHoldemPlayer p : players){
@@ -123,6 +146,10 @@ public class TexasHoldemGame {
         
     }
     
+    /**
+     * Evaluates each player's hand with public cards included.
+     * @return  an ArrayList of player hand evaluations. 
+     */
     public ArrayList<String> evaluatePlayersSim(){
         
         ArrayList<String> results = new ArrayList<>();
@@ -137,12 +164,19 @@ public class TexasHoldemGame {
         return results;
     }
     
+    /**
+     * Sorts players based on the value of their hand.
+     */
     public void sortPlayers(){
         Comparator<TexasHoldemPlayer> cp = new PlayerComparator();
         players.sort(cp);
         
     }
     
+    /**
+     * Returns the winning player.
+     * @return  the player with the most valuable hand at the end of the game.
+     */
     public TexasHoldemPlayer getWinner(){
         sortPlayers();
         return players.get(players.size()-1);
