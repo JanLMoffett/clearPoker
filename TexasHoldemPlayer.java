@@ -3,6 +3,10 @@ package javapoker;
 
 import java.util.ArrayList;
 
+/**
+ * A player in a Texas Holdem poker game. 
+ * @author Jan L. Moffett
+ */
 public class TexasHoldemPlayer {
     private final String playerName;
     private CardHand playerHand;
@@ -17,7 +21,12 @@ public class TexasHoldemPlayer {
     boolean twoPair;
     boolean pair;
     
-    
+    /**
+     * Sole constructor.
+     * @param name  the player's name.
+     * @param card1 the first card dealt to the player.
+     * @param card2 the second card dealt to the player. 
+     */
     public TexasHoldemPlayer(String name, Card card1, Card card2){
         playerName = name;
         playerHand = new CardHand(card1, card2);
@@ -33,44 +42,80 @@ public class TexasHoldemPlayer {
         twoPair = false;
     }
     
+    /**
+     * Returns the player's name.
+     * @return  the player's name. 
+     */
     public String getName(){
         return playerName;
         
     }
     
+    /**
+     * Returns the first card dealt to the player.
+     * @return  a card. 
+     */
     public Card getCard1(){
         return playerHand.getHand().get(0);
     }
     
+    /**
+     * Returns the second card dealt to the player.
+     * @return  a card.
+     */
     public Card getCard2(){
         return playerHand.getHand().get(1);
     }
     
+    /**
+     * Prints the player's name and the two cards in their hole hand.
+     */
     public void printPlayer(){
         System.out.println(playerName);
         playerHand.printHand();
     
     }
     
+    /**
+     * Sets the player's hole hand.
+     * @param card1 the first card dealt to the player.
+     * @param card2 the second card dealt to the player. 
+     */
     public void setHoleHand(Card card1, Card card2){
         playerHand = new CardHand(card1, card2);
     
     }
     
+    /**
+     * Adds the Flop to the player's hand.
+     * @param flop  a card. 
+     */
     public void addFlop(ArrayList<Card> flop){
         flop.forEach(c -> playerHand.addCard(c));
         
     }
     
+    /**
+     * Adds the Turn to the player's hand.
+     * @param turn  a card. 
+     */
     public void addTurn(Card turn){
         playerHand.addCard(turn);
     
     }
     
+    /**
+     * Adds the River to the player's hand.
+     * @param river a card. 
+     */
     public void addRiver(Card river){
         playerHand.addCard(river);
     }
     
+    /**
+     * Evaluates the player's hand.
+     * @return  a string describing the classifications met by the hand. 
+     */
     public String evaluateHand(){
         
         String ret = "";
@@ -174,6 +219,9 @@ public class TexasHoldemPlayer {
         
     }
     
+    /**
+     * Prints the player's result and score, based on the value of their hand.
+     */
     public void printEval(){
     
         System.out.println("Result: " + getResult());
@@ -182,6 +230,10 @@ public class TexasHoldemPlayer {
         
     }
     
+    /**
+     * Returns the player's result.
+     * @return  a string, i.e. "Full House". 
+     */
     public String getResult(){
         
         if(royalFlush)
@@ -207,6 +259,10 @@ public class TexasHoldemPlayer {
         
     }
     
+    /**
+     * Returns the player's score.
+     * @return  a number. 
+     */
     public int getScore(){
         
         if(royalFlush)
